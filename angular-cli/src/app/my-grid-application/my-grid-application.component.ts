@@ -26,6 +26,20 @@ export class MyGridApplicationComponent {
 
   constructor() {
     this.gridOptions = <GridOptions>{};
+    this.gridOptions.getNodeChildDetails= function (file) {
+                    if (file.group) {
+                        return {
+                            group: true,
+                            children: file.children,
+                            expanded: false
+                        };
+                    } else {
+                        return null;
+                    }
+                };
+    this.gridOptions.floatingFilter = true;
+    this.gridOptions.enableGroupEdit: true;
+    this.gridOptions.singleClickEdit: true;
 
     var _self = this;
 
