@@ -3,7 +3,7 @@ import "ag-grid-enterprise";
 import {GridOptions} from "ag-grid/main";
 
 
-var document : any;
+var document: any;
 
 @Component({
   selector: 'app-my-grid-application',
@@ -13,7 +13,7 @@ export class MyGridApplicationComponent {
   gridOptions: GridOptions;
   columnDefs: any[]
   rowData: any[];
-  data:any[];
+  data: any[];
   public assignedtogridlist: any = [''];
   public formatter = new Intl.NumberFormat('en-us', {
 
@@ -27,27 +27,28 @@ export class MyGridApplicationComponent {
 
   constructor() {
     this.gridOptions = <GridOptions>{};
-    this.gridOptions.getNodeChildDetails= function (file) {
-                    if (file.group) {
-                        return {
-                            group: true,
-                            children: file.children,
-                            expanded: false
-                        };
-                    } else {
-                        return null;
-                    }
-                };
+    this.gridOptions.getNodeChildDetails = function (file) {
+      if (file.group) {
+        return {
+          group: true,
+          children: file.children,
+          expanded: false,
+          key: 'group'
+        };
+      } else {
+        return null;
+      }
+    };
     this.gridOptions.floatingFilter = true;
-    this.gridOptions.enableGroupEdit: true;
-    this.gridOptions.singleClickEdit: true;
+    this.gridOptions.enableGroupEdit = true;
+    this.gridOptions.singleClickEdit = true;
 
     var _self = this;
 
     this.columnDefs = [
 
       {
-        headerName: "", width: 30, cellRenderer: 'group', cellRendererParams: {
+        headerName: "group", width: 150, cellRenderer: 'group', field:'group', cellRendererParams: {
 
         // innerRenderer: _self.innerCellRenderer,
 
@@ -358,101 +359,269 @@ export class MyGridApplicationComponent {
 
     ];
 
-    this.data = [{"id":0,"MasterId":0,"UploadType":null,"FileName":null,"Team":"","Fundfamily":"XXXXXX","XTRNL_FUND_ID":null,"FeeType":"X","Total":6,"TotalUploaded":6,"Successful":"0","HBreak_PL1":"3","Success_PL2":"0","HBreak_Fnl":"0","Success_PL1":"0","Success_Fnl":"0","FeeAmount":600.000,"TotalScrape":0.000,"NetPayment":0.000,"Source":"UPLOAD","CrtDate":"08/01/2017 03:15:42 AM","Status_cde":"OPEN","DescText":null,"Status":"Open","StatusFile":null,"CrtUserId":"XXX","HBreak_PL2":"1","SBreak_PL1":"0","SBreak_PL2":"0","SBreak_Fnl":"0","FeePeriodDate":"07/30/2017","HBreak":"4","SBreak":"0","AssignedTo":"XXXX","Fee_Freq":"MONTHLY ","MasterRow":"M","FundFamilyID":"2907","Suc_Res_PL1":"0","Suc_Res_PL2":"0","Suc_Res_Fnl":"0","Processed":"0","Successful_Reverse":"0","SBreak_Res_PL1":"0","SBreak_Res_PL2":"0","SBreak_Res":"0","SBreak_Res_Fnl":"0","MultipleFile":"3847,3846","IND_RVRS":"X","Symbol":null,"MultipleBatch":"9689,9688","MasterIdMax":3847,"Processed_Res":"0"},{"id":9689,"MasterId":3847,"UploadType":"XXX","FileName":"SAMPLE.xlsx","Team":"","Fundfamily":"XXXXXX","XTRNL_FUND_ID":"XXXXXX","FeeType":"X","Total":3,"TotalUploaded":3,"Successful":"0","HBreak_PL1":"3","Success_PL2":"0","HBreak_Fnl":"0","Success_PL1":"0","Success_Fnl":"0","FeeAmount":300.000,"TotalScrape":0.000,"NetPayment":0.000,"Source":"TEST","CrtDate":"08/01/2017 03:15:42 AM","Status_cde":"OPEN","DescText":"CMPLTD","Status":"Open","StatusFile":"Completed","CrtUserId":"XXX","HBreak_PL2":"0","SBreak_PL1":"0","SBreak_PL2":"0","SBreak_Fnl":"0","FeePeriodDate":"07/30/2017","HBreak":"3","SBreak":"0","AssignedTo":"XXXX","Fee_Freq":"MONTHLY","MasterRow":"","FundFamilyID":"2907","Suc_Res_PL1":"0","Suc_Res_PL2":"0","Suc_Res_Fnl":"0","Processed":"0","Successful_Reverse":"0","SBreak_Res_PL1":"0","SBreak_Res_PL2":"0","SBreak_Res":"0","SBreak_Res_Fnl":"0","MultipleFile":null,"IND_RVRS":"X","Symbol":null,"MultipleBatch":null,"MasterIdMax":3847,"Processed_Res":"0"},{"id":9688,"MasterId":3846,"UploadType":"FEE","FileName":"SAMPLE1.xlsx","Team":"","Fundfamily":"XXXXXX","XTRNL_FUND_ID":"XXXXXX","FeeType":"X","Total":3,"TotalUploaded":3,"Successful":"0","HBreak_PL1":"0","Success_PL2":"0","HBreak_Fnl":"0","Success_PL1":"0","Success_Fnl":"0","FeeAmount":300.000,"TotalScrape":0.000,"NetPayment":0.000,"Source":"TEST","CrtDate":"08/01/2017 02:53:59 AM","Status_cde":"OPEN","DescText":"CMPLTD","Status":"Open","StatusFile":"Completed","CrtUserId":"XXX","HBreak_PL2":"1","SBreak_PL1":"0","SBreak_PL2":"0","SBreak_Fnl":"0","FeePeriodDate":"07/30/2017","HBreak":"1","SBreak":"0","AssignedTo":"XXXX","Fee_Freq":"MONTHLY","MasterRow":"","FundFamilyID":"2907","Suc_Res_PL1":"0","Suc_Res_PL2":"0","Suc_Res_Fnl":"0","Processed":"0","Successful_Reverse":"0","SBreak_Res_PL1":"0","SBreak_Res_PL2":"0","SBreak_Res":"0","SBreak_Res_Fnl":"0","MultipleFile":null,"IND_RVRS":"X","Symbol":null,"MultipleBatch":null,"MasterIdMax":3846,"Processed_Res":"0"}]
+    this.data = [{
+      "id": 0,
+      "MasterId": 0,
+      "UploadType": null,
+      "FileName": null,
+      "Team": "",
+      "Fundfamily": "XXXXXX",
+      "XTRNL_FUND_ID": null,
+      "FeeType": "X",
+      "Total": 6,
+      "TotalUploaded": 6,
+      "Successful": "0",
+      "HBreak_PL1": "3",
+      "Success_PL2": "0",
+      "HBreak_Fnl": "0",
+      "Success_PL1": "0",
+      "Success_Fnl": "0",
+      "FeeAmount": 600.000,
+      "TotalScrape": 0.000,
+      "NetPayment": 0.000,
+      "Source": "UPLOAD",
+      "CrtDate": "08/01/2017 03:15:42 AM",
+      "Status_cde": "OPEN",
+      "DescText": null,
+      "Status": "Open",
+      "StatusFile": null,
+      "CrtUserId": "XXX",
+      "HBreak_PL2": "1",
+      "SBreak_PL1": "0",
+      "SBreak_PL2": "0",
+      "SBreak_Fnl": "0",
+      "FeePeriodDate": "07/30/2017",
+      "HBreak": "4",
+      "SBreak": "0",
+      "AssignedTo": "XXXX",
+      "Fee_Freq": "MONTHLY ",
+      "MasterRow": "M",
+      "FundFamilyID": "2907",
+      "Suc_Res_PL1": "0",
+      "Suc_Res_PL2": "0",
+      "Suc_Res_Fnl": "0",
+      "Processed": "0",
+      "Successful_Reverse": "0",
+      "SBreak_Res_PL1": "0",
+      "SBreak_Res_PL2": "0",
+      "SBreak_Res": "0",
+      "SBreak_Res_Fnl": "0",
+      "MultipleFile": "3847,3846",
+      "IND_RVRS": "X",
+      "Symbol": null,
+      "MultipleBatch": "9689,9688",
+      "MasterIdMax": 3847,
+      "Processed_Res": "0"
+    }, {
+      "id": 9689,
+      "MasterId": 3847,
+      "UploadType": "XXX",
+      "FileName": "SAMPLE.xlsx",
+      "Team": "",
+      "Fundfamily": "XXXXXX",
+      "XTRNL_FUND_ID": "XXXXXX",
+      "FeeType": "X",
+      "Total": 3,
+      "TotalUploaded": 3,
+      "Successful": "0",
+      "HBreak_PL1": "3",
+      "Success_PL2": "0",
+      "HBreak_Fnl": "0",
+      "Success_PL1": "0",
+      "Success_Fnl": "0",
+      "FeeAmount": 300.000,
+      "TotalScrape": 0.000,
+      "NetPayment": 0.000,
+      "Source": "TEST",
+      "CrtDate": "08/01/2017 03:15:42 AM",
+      "Status_cde": "OPEN",
+      "DescText": "CMPLTD",
+      "Status": "Open",
+      "StatusFile": "Completed",
+      "CrtUserId": "XXX",
+      "HBreak_PL2": "0",
+      "SBreak_PL1": "0",
+      "SBreak_PL2": "0",
+      "SBreak_Fnl": "0",
+      "FeePeriodDate": "07/30/2017",
+      "HBreak": "3",
+      "SBreak": "0",
+      "AssignedTo": "XXXX",
+      "Fee_Freq": "MONTHLY",
+      "MasterRow": "",
+      "FundFamilyID": "2907",
+      "Suc_Res_PL1": "0",
+      "Suc_Res_PL2": "0",
+      "Suc_Res_Fnl": "0",
+      "Processed": "0",
+      "Successful_Reverse": "0",
+      "SBreak_Res_PL1": "0",
+      "SBreak_Res_PL2": "0",
+      "SBreak_Res": "0",
+      "SBreak_Res_Fnl": "0",
+      "MultipleFile": null,
+      "IND_RVRS": "X",
+      "Symbol": null,
+      "MultipleBatch": null,
+      "MasterIdMax": 3847,
+      "Processed_Res": "0"
+    }, {
+      "id": 9688,
+      "MasterId": 3846,
+      "UploadType": "FEE",
+      "FileName": "SAMPLE1.xlsx",
+      "Team": "",
+      "Fundfamily": "XXXXXX",
+      "XTRNL_FUND_ID": "XXXXXX",
+      "FeeType": "X",
+      "Total": 3,
+      "TotalUploaded": 3,
+      "Successful": "0",
+      "HBreak_PL1": "0",
+      "Success_PL2": "0",
+      "HBreak_Fnl": "0",
+      "Success_PL1": "0",
+      "Success_Fnl": "0",
+      "FeeAmount": 300.000,
+      "TotalScrape": 0.000,
+      "NetPayment": 0.000,
+      "Source": "TEST",
+      "CrtDate": "08/01/2017 02:53:59 AM",
+      "Status_cde": "OPEN",
+      "DescText": "CMPLTD",
+      "Status": "Open",
+      "StatusFile": "Completed",
+      "CrtUserId": "XXX",
+      "HBreak_PL2": "1",
+      "SBreak_PL1": "0",
+      "SBreak_PL2": "0",
+      "SBreak_Fnl": "0",
+      "FeePeriodDate": "07/30/2017",
+      "HBreak": "1",
+      "SBreak": "0",
+      "AssignedTo": "XXXX",
+      "Fee_Freq": "MONTHLY",
+      "MasterRow": "",
+      "FundFamilyID": "2907",
+      "Suc_Res_PL1": "0",
+      "Suc_Res_PL2": "0",
+      "Suc_Res_Fnl": "0",
+      "Processed": "0",
+      "Successful_Reverse": "0",
+      "SBreak_Res_PL1": "0",
+      "SBreak_Res_PL2": "0",
+      "SBreak_Res": "0",
+      "SBreak_Res_Fnl": "0",
+      "MultipleFile": null,
+      "IND_RVRS": "X",
+      "Symbol": null,
+      "MultipleBatch": null,
+      "MasterIdMax": 3846,
+      "Processed_Res": "0"
+    }]
     var indent = 0;
-            var fundindent = 0;
-            var parents = [];
-            var children = [];
-            var parentindex = 0;
-            var groupedData_temp = [];
-            var groupedData = [];
-            // prepare the data
-            //groupedData.push(data[0]);
-            //console.log(data);
-            
-            for (var i = 0; i < this.data.length; i++) {
-                if (this.data[i].MasterRow === "")
-                var parent; if (this.data[i]["id"] === 0) this.data[i]["id"] = "batch" + i;
-                if (i > 0 && this.data[i].MasterId === this.data[i - 1].MasterId && indent == 0) {
-                    indent = 1;
-                    //parents.push(i - 1);
-                    this.data[i]["indent"] = indent;
-                    this.data[i]["_collapsed"] = true; data[i]["children"] = [];
-                    children.push(this.data[i]); parentindex = groupedData_temp.length - 1;
-                }
-                else if (i > 0 && this.data[i].MasterId === this.data[i - 1].MasterId && indent > 0) {
-                    indent = 1; this.data[i]["indent"] = indent;
-                    this.data[i]["_collapsed"] = true; this.data[i]["children"] = [];
-                    children.push(this.data[i]);
-                    //parents.pop();
-                } else if (i > 0 && this.data[i].MasterId !== this.data[i - 1].MasterId && indent > 0) {
-                    indent--;
-                    this.data[i]["indent"] = indent;
-                    this.data[i]["_collapsed"] = true; this.data[i]["children"] = [];
-                    groupedData_temp.push(this.data[i]);
-                    children = []; parentindex = 0;
-                }
-                else {
-                    this.data[i]["indent"] = indent;
-                    this.data[i]["_collapsed"] = true; this.data[i]["children"] = [];
-                    groupedData_temp.push(this.data[i]);
-                    children = []; parentindex = 0;
-                }
-                if (indent > 0) {
-                    groupedData_temp[parentindex]["children"] = children;
-                    groupedData_temp[parentindex]["group"] = true;
-                    //data.pop(data[i]);
-                }
-            }            
-            for (var i = 0; i < groupedData_temp.length; i++) {
-                var parent;
-                if (groupedData_temp[i]["id"] === 0)
-                    groupedData_temp[i]["id"] = "batch" + i;
-                if (i > 0 && groupedData_temp[i].FundFamilyID === groupedData_temp[i - 1].FundFamilyID
-                    && groupedData_temp[i].FeeType === groupedData_temp[i - 1].FeeType
-                    && groupedData_temp[i].FeePeriodDate === groupedData_temp[i - 1].FeePeriodDate && fundindent == 0) {
-                    fundindent = 1;
-                    //parents.push(i - 1);
-                    groupedData_temp[i]["fundindent"] = fundindent;
-                    groupedData_temp[i]["_collapsed"] = true;
-                    // groupedData_temp[i]["children"] = [];
-                    children.push(groupedData_temp[i]);
-                    parentindex = groupedData.length - 1;
-                }
-                else if (i > 0 && groupedData_temp[i].FundFamilyID === groupedData_temp[i - 1].FundFamilyID
-                    && groupedData_temp[i].FeeType === groupedData_temp[i - 1].FeeType
-                    && groupedData_temp[i].FeePeriodDate === groupedData_temp[i - 1].FeePeriodDate && fundindent > 0) {
-                    fundindent = 1;
-                    groupedData_temp[i]["fundindent"] = fundindent;
-                    groupedData_temp[i]["_collapsed"] = true;
-                    // groupedData_temp[i]["children"] = [];
-                    children.push(groupedData_temp[i]);
-                }
-                else if (i > 0 && (groupedData_temp[i].FundFamilyID !== groupedData_temp[i - 1].FundFamilyID
-                    || groupedData_temp[i].FeeType !== groupedData_temp[i - 1].FeeType
-                    || groupedData_temp[i].FeePeriodDate !== groupedData_temp[i - 1].FeePeriodDate) && fundindent > 0) {
-                    fundindent--;
-                    groupedData_temp[i]["fundindent"] = fundindent;
-                    groupedData_temp[i]["_collapsed"] = true;
-                    //groupedData_temp[i]["children"] = [];
-                    groupedData.push(groupedData_temp[i]);
-                    children = [];
-                    parentindex = 0;
-                }
-                else {
-                    groupedData_temp[i]["fundindent"] = fundindent;
-                    groupedData_temp[i]["_collapsed"] = true;
-                    //groupedData_temp[i]["children"] = [];
-                    groupedData.push(groupedData_temp[i]);
-                    children = [];
-                    parentindex = 0;
-                }
-                if (fundindent > 0) {
-                    groupedData[parentindex]["children"] = children;
-                    groupedData[parentindex]["group"] = true;
-                }
-            }
-    this.rowData=groupedData;
+    var fundindent = 0;
+    var parents = [];
+    var children = [];
+    var parentindex = 0;
+    var groupedData_temp = [];
+    var groupedData = [];
+    // prepare the data
+    //groupedData.push(data[0]);
+    //console.log(data);
+
+    for (var i = 0; i < this.data.length; i++) {
+      if (this.data[i].MasterRow === "")
+        var parent;
+      if (this.data[i]["id"] === 0) this.data[i]["id"] = "batch" + i;
+      if (i > 0 && this.data[i].MasterId === this.data[i - 1].MasterId && indent == 0) {
+        indent = 1;
+        //parents.push(i - 1);
+        this.data[i]["indent"] = indent;
+        this.data[i]["_collapsed"] = true;
+        this.data[i]["children"] = [];
+        children.push(this.data[i]);
+        parentindex = groupedData_temp.length - 1;
+      }
+      else if (i > 0 && this.data[i].MasterId === this.data[i - 1].MasterId && indent > 0) {
+        indent = 1;
+        this.data[i]["indent"] = indent;
+        this.data[i]["_collapsed"] = true;
+        this.data[i]["children"] = [];
+        children.push(this.data[i]);
+        //parents.pop();
+      } else if (i > 0 && this.data[i].MasterId !== this.data[i - 1].MasterId && indent > 0) {
+        indent--;
+        this.data[i]["indent"] = indent;
+        this.data[i]["_collapsed"] = true;
+        this.data[i]["children"] = [];
+        groupedData_temp.push(this.data[i]);
+        children = [];
+        parentindex = 0;
+      }
+      else {
+        this.data[i]["indent"] = indent;
+        this.data[i]["_collapsed"] = true;
+        this.data[i]["children"] = [];
+        groupedData_temp.push(this.data[i]);
+        children = [];
+        parentindex = 0;
+      }
+      if (indent > 0) {
+        groupedData_temp[parentindex]["children"] = children;
+        groupedData_temp[parentindex]["group"] = true;
+        //data.pop(data[i]);
+      }
+    }
+    for (var i = 0; i < groupedData_temp.length; i++) {
+      var parent;
+      if (groupedData_temp[i]["id"] === 0)
+        groupedData_temp[i]["id"] = "batch" + i;
+      if (i > 0 && groupedData_temp[i].FundFamilyID === groupedData_temp[i - 1].FundFamilyID
+        && groupedData_temp[i].FeeType === groupedData_temp[i - 1].FeeType
+        && groupedData_temp[i].FeePeriodDate === groupedData_temp[i - 1].FeePeriodDate && fundindent == 0) {
+        fundindent = 1;
+        //parents.push(i - 1);
+        groupedData_temp[i]["fundindent"] = fundindent;
+        groupedData_temp[i]["_collapsed"] = true;
+        // groupedData_temp[i]["children"] = [];
+        children.push(groupedData_temp[i]);
+        parentindex = groupedData.length - 1;
+      }
+      else if (i > 0 && groupedData_temp[i].FundFamilyID === groupedData_temp[i - 1].FundFamilyID
+        && groupedData_temp[i].FeeType === groupedData_temp[i - 1].FeeType
+        && groupedData_temp[i].FeePeriodDate === groupedData_temp[i - 1].FeePeriodDate && fundindent > 0) {
+        fundindent = 1;
+        groupedData_temp[i]["fundindent"] = fundindent;
+        groupedData_temp[i]["_collapsed"] = true;
+        // groupedData_temp[i]["children"] = [];
+        children.push(groupedData_temp[i]);
+      }
+      else if (i > 0 && (groupedData_temp[i].FundFamilyID !== groupedData_temp[i - 1].FundFamilyID
+          || groupedData_temp[i].FeeType !== groupedData_temp[i - 1].FeeType
+          || groupedData_temp[i].FeePeriodDate !== groupedData_temp[i - 1].FeePeriodDate) && fundindent > 0) {
+        fundindent--;
+        groupedData_temp[i]["fundindent"] = fundindent;
+        groupedData_temp[i]["_collapsed"] = true;
+        //groupedData_temp[i]["children"] = [];
+        groupedData.push(groupedData_temp[i]);
+        children = [];
+        parentindex = 0;
+      }
+      else {
+        groupedData_temp[i]["fundindent"] = fundindent;
+        groupedData_temp[i]["_collapsed"] = true;
+        //groupedData_temp[i]["children"] = [];
+        groupedData.push(groupedData_temp[i]);
+        children = [];
+        parentindex = 0;
+      }
+      if (fundindent > 0) {
+        groupedData[parentindex]["children"] = children;
+        groupedData[parentindex]["group"] = true;
+      }
+    }
+    this.rowData = groupedData;
   }
 
   public formatMasterId(params) {
@@ -1913,7 +2082,6 @@ export class MyGridApplicationComponent {
     }
 
   }
-
 
 
   onGridReady(params) {
