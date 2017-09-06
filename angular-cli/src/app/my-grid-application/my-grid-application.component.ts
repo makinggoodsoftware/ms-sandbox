@@ -621,7 +621,13 @@ export class MyGridApplicationComponent {
         groupedData[parentindex]["group"] = true;
       }
     }
-    this.rowData = groupedData;
+
+    this.rowData = [];
+    var times = 10000;
+    for(var i=0; i < times; i++){
+      this.rowData.push(groupedData[0]);
+    }
+
   }
 
   public formatMasterId(params) {
